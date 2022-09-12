@@ -1,0 +1,19 @@
+<header>
+  <nav>
+    <ul  id="menuPrincipal">
+      <li [routerLinkActive]="['actived']"><a [routerLink]="['/sobre-mi']" >Sobre mi</a></li>
+      <li [routerLinkActive]="['actived']"><a [routerLink]="['/proyectos']">Proyectos</a></li>
+      <li id="logo"><a href="#">FD</a></li>
+      <li [routerLinkActive]="['actived']"><a [routerLink]="['/crear-proyecto']">Crear proyecto</a></li>
+      <li [routerLinkActive]="['actived']"><a [routerLink]="['/contacto']">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section id="content">
+    <router-outlet></router-outlet>
+  </section>
+</main>
+<footer>
+  Portfolio de <a href="https://github.com/Fede1109">Federico Díaz </a>&copy;
+</footer>

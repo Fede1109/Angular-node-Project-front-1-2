@@ -1,0 +1,52 @@
+<div class="container" *ngIf="project">
+    <h2>{{title}}</h2>
+    <div class="message success" *ngIf="status == 'success' && save_project">
+        El proyecto se ha creado correctamente, puedes verlo <a [routerLink]="['/proyecto',save_project._id]">aquí</a>.
+    </div>
+    <div class="message failed" *ngIf="status == 'failed'">
+        El proyecto no se ha podido crear.
+    </div>
+    <form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)">
+        <div>
+            <label for="name">Nombre</label>
+            <p>
+                <input type="text" name="name" #name="ngModel" [(ngModel)]="project.name" required>
+                <span class="formError" *ngIf="name.touched && !name.valid">El nombre es obligatorio</span>
+            </p>
+        </div>
+        <div>
+            <label for="description">Descripción</label>
+            <p>
+                <textarea name="description" #description="ngModel" [(ngModel)]="project.description"
+                    required></textarea>
+                <span class="formError" *ngIf="description.touched && !description.valid">La descripcion es obligatoria</span>
+            </p>
+        </div>
+        <div>
+            <label for="category">Categoria</label>
+            <p>
+                <input type="text" name="category" #category="ngModel" [(ngModel)]="project.category" required>
+                <span class="formError" *ngIf="category.touched && !category.valid">La categoría es obligatoria</span>
+            </p>
+        </div>
+        <div>
+            <label for="year">Año de lanzamiento</label>
+            <input type="text" name="year" #year="ngModel" [(ngModel)]="project.year">
+        </div>
+        <div>
+            <label for="langs">Lenguajes utilizados</label>
+            <p>
+                <input type="text" name="langs" #langs="ngModel" [(ngModel)]="project.langs" required>
+                <span class="formError" *ngIf="langs.touched && !langs.valid">Los lenguajes son obligatorios</span>
+            </p>
+        </div>
+        <div>
+            <label for="image">Imagen del proyecto</label>
+            <div *ngIf="project.image" id="edit_img">
+                <img src="{{url+'get-image/'+project.image}}" alt="Imagen proyecto">
+            </div>
+            <input type="file" name="image" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
+        </div>
+        <input type="submit" value="Enviar" [disabled]="!projectForm.form.valid">
+    </form>
+</div>
